@@ -1,0 +1,4 @@
+{
+  "extends": ["@zapperbot/tsconfig/library.json"],
+  "include": ["src/**/*.ts"]
+}

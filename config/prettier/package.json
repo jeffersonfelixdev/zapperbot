@@ -1,0 +1,15 @@
+{
+  "name": "@zapperbot/prettier",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "private": true,
+  "prettier": "./index.mjs",
+  "eslintConfig": {
+    "extends": [
+      "@zapperbot/eslint-config/library"
+    ]
+  },
+  "devDependencies": {
+    "prettier-plugin-tailwindcss": "^0.6.5"
+  }
+}

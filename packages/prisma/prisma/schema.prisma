@@ -1,0 +1,73 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String   @id @db.VarChar(50)
+  name          String   @db.VarChar(255)
+  email         String   @unique @db.VarChar(255)
+  phoneNumber   String?  @unique @map("phone_number") @db.VarChar(30)
+  phoneVerified Boolean  @default(false) @map("phone_verified")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz()
+
+  tokens UserToken[]
+
+  @@map("users")
+}
+
+enum UserTokenType {
+  PHONE_VERIFICATION
+
+  @@map("user_token_type")
+}
+
+model UserToken {
+  id        String        @id @db.VarChar(50)
+  userId    String        @map("user_id") @db.VarChar(50)
+  tokenType UserTokenType @default(PHONE_VERIFICATION) @map("token_type")
+  hash      String
+  tries     Int           @default(0)
+  createdAt DateTime      @default(now()) @map("created_at") @db.Timestamptz()
+  expireAt  DateTime      @map("expire_at") @db.Timestamptz()
+
+  User User? @relation(fields: [userId], references: [id])
+
+  @@unique([userId, tokenType])
+  @@map("user_tokens")
+}
+
+enum PlanType {
+  start
+  premium
+  pro
+
+  @@map("plan_type")
+}
+
+enum RecurringType {
+  monthly
+  yearly
+
+  @@map("recurring_type")
+}
+
+model Subscription {
+  id          String        @id @db.VarChar(50)
+  name        String        @db.VarChar(255)
+  referenceId String        @unique @map("reference_id") @db.VarChar(100)
+  email       String        @db.VarChar(255)
+  plan        PlanType
+  recurring   RecurringType
+  amount      Int
+  status      String        @db.VarChar(150)
+  startedAt   DateTime      @map("started_at") @db.Timestamptz()
+  endedAt     DateTime?     @map("ended_at") @db.Timestamptz()
+
+  @@map("subscriptions")
+}

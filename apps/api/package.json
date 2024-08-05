@@ -1,0 +1,30 @@
+{
+  "name": "@zapperbot/api",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "tsx watch src/server/index.ts",
+    "prelint": "tsc --noemit",
+    "lint": "eslint --ext .ts ./src",
+    "lint:fix": "eslint --ext .ts ./src --fix",
+    "build": "tsup",
+    "start": "node dist/index.js"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*",
+    "tsup": "^8.2.4",
+    "tsx": "^4.16.5"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": [
+      "@zapperbot/eslint-config/node"
+    ]
+  },
+  "dependencies": {
+    "fastify": "^4.28.1",
+    "zod": "^3.23.8"
+  }
+}

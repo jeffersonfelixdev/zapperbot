@@ -1,0 +1,19 @@
+{
+  "name": "@zapperbot/auth",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "devDependencies": {
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": "@zapperbot/eslint-config/library"
+  },
+  "dependencies": {
+    "@casl/ability": "^6.7.1"
+  }
+}

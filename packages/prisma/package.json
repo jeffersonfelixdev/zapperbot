@@ -1,0 +1,26 @@
+{
+  "name": "@zapperbot/prisma",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "private": true,
+  "scripts": {
+    "generate": "prisma generate",
+    "migrate:dev": "prisma migrate dev",
+    "migrate:prod": "prisma migrate deploy"
+  },
+  "devDependencies": {
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*",
+    "prisma": "^5.17.0",
+    "typescript": "5.3.3"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": "@zapperbot/eslint-config/library"
+  },
+  "dependencies": {
+    "@prisma/client": "5.17.0"
+  }
+}

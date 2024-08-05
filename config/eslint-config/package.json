@@ -1,0 +1,22 @@
+{
+  "name": "@zapperbot/eslint-config",
+  "version": "1.0.0",
+  "private": true,
+  "files": [
+    "library.js",
+    "next.js",
+    "node.js"
+  ],
+  "devDependencies": {
+    "@rocketseat/eslint-config": "^2.2.2",
+    "@zapperbot/prettier": "workspace:*",
+    "eslint": "8",
+    "eslint-plugin-simple-import-sort": "^12.1.1"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": [
+      "./library.js"
+    ]
+  }
+}
