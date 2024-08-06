@@ -16,6 +16,10 @@ export const env = createEnv({
       .string()
       .url()
       .refine((url) => url.startsWith('postgresql://')),
+    SMTP_HOST: z.string(),
+    SMTP_PORT: z.coerce.number(),
+    SMTP_USER: z.string(),
+    SMTP_PASSWORD: z.string(),
   },
   client: { NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}') },
   experimental__runtimeEnv: {

@@ -1,0 +1,21 @@
+{
+  "name": "@zapperbot/mail",
+  "version": "1.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "private": true,
+  "devDependencies": {
+    "@types/nodemailer": "^6.4.15",
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": "@zapperbot/eslint-config/library"
+  },
+  "dependencies": {
+    "@zapperbot/env": "workspace:*",
+    "nodemailer": "^6.9.14"
+  }
+}
