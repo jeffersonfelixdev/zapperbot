@@ -10,6 +10,7 @@
     "start": "dotenv -e ./.env -e ../../.env -- node dist/index.js"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/jwk-to-pem": "^2.0.3",
     "@types/node": "^22.1.0",
     "@zapperbot/env": "workspace:*",
@@ -36,10 +37,12 @@
     "@fastify/swagger-ui": "^4.0.1",
     "@zapperbot/prisma": "workspace:*",
     "axios": "^1.7.3",
+    "bcrypt": "^5.1.1",
     "fastify": "^4.28.1",
     "fastify-plugin": "^4.5.1",
     "fastify-type-provider-zod": "^2.0.0",
     "jwk-to-pem": "^2.0.5",
+    "nanoid": "3",
     "zod": "^3.23.8"
   }
 }
