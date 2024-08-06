@@ -11,8 +11,19 @@
       "dependsOn": ["^lint"]
     },
     "dev": {
+      "dependsOn": [
+        "^dev",
+        "@zapperbot/prisma#db:generate",
+        "@zapperbot/prisma#db:push"
+      ],
       "cache": false,
       "persistent": true
+    },
+    "db:generate": {
+      "cache": false
+    },
+    "db:push": {
+      "cache": false
     }
   }
 }

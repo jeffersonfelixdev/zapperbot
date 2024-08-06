@@ -11,6 +11,8 @@ model User {
   id            String   @id @db.VarChar(50)
   name          String   @db.VarChar(255)
   email         String   @unique @db.VarChar(255)
+  emailVerified Boolean  @default(false) @map("email_verified")
+  passwordHash  String   @map("password_hash") @db.VarChar(255)
   phoneNumber   String?  @unique @map("phone_number") @db.VarChar(30)
   phoneVerified Boolean  @default(false) @map("phone_verified")
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz()
@@ -22,6 +24,7 @@ model User {
 }
 
 enum UserTokenType {
+  EMAIL_VERIFICATION
   PHONE_VERIFICATION
 
   @@map("user_token_type")

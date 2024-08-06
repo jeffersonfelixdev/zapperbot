@@ -1,6 +1,5 @@
+import { env } from '@zapperbot/env'
 import { fastify } from 'fastify'
-
-import { env } from '../config/env'
 
 const app = fastify()
 

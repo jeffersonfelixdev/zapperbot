@@ -1,0 +1,3 @@
+{
+  "extends": ["@zapperbot/tsconfig/library.json"]
+}

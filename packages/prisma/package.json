@@ -5,14 +5,16 @@
   "types": "./index.ts",
   "private": true,
   "scripts": {
-    "generate": "prisma generate",
-    "migrate:dev": "prisma migrate dev",
-    "migrate:prod": "prisma migrate deploy"
+    "db:generate": "npx prisma generate",
+    "db:migrate:dev": "dotenv -e ./.env -e ../../.env -- prisma migrate dev",
+    "db:migrate:prod": "dotenv -e ./.env -e ../../.env -- prisma migrate deploy",
+    "db:push": "dotenv -e ./.env -e ../../.env -- prisma db push --skip-generate --accept-data-loss"
   },
   "devDependencies": {
     "@zapperbot/eslint-config": "workspace:*",
     "@zapperbot/prettier": "workspace:*",
     "@zapperbot/tsconfig": "workspace:*",
+    "dotenv-cli": "^7.4.2",
     "prisma": "^5.17.0",
     "typescript": "5.3.3"
   },

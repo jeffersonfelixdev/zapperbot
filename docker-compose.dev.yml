@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: postgres:16
+    ports:
+      - '5432:5432'
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgres/data
+    environment:
+      POSTGRES_DB: zapperbot
+      POSTGRES_USER: zapperbot
+      POSTGRES_PASSWORD: zapperbot
+
+volumes:
+  postgres_data:

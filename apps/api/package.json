@@ -2,18 +2,20 @@
   "name": "@zapperbot/api",
   "version": "1.0.0",
   "scripts": {
-    "dev": "tsx watch src/server/index.ts",
-    "prelint": "tsc --noemit",
+    "dev": "dotenv -e ./.env -e ../../.env -- tsx watch src/server/index.ts",
+    "prelint": "dotenv -e ./.env -e ../../.env -- tsc --noemit",
     "lint": "eslint --ext .ts ./src",
-    "lint:fix": "eslint --ext .ts ./src --fix",
-    "build": "tsup",
-    "start": "node dist/index.js"
+    "lint:fix": "dotenv -e ./.env -e ../../.env -- eslint --ext .ts ./src --fix",
+    "build": "dotenv -e ./.env -e ../../.env -- tsup",
+    "start": "dotenv -e ./.env -e ../../.env -- node dist/index.js"
   },
   "devDependencies": {
     "@types/node": "^22.1.0",
+    "@zapperbot/env": "workspace:*",
     "@zapperbot/eslint-config": "workspace:*",
     "@zapperbot/prettier": "workspace:*",
     "@zapperbot/tsconfig": "workspace:*",
+    "dotenv-cli": "^7.4.2",
     "tsup": "^8.2.4",
     "tsx": "^4.16.5"
   },
@@ -24,6 +26,7 @@
     ]
   },
   "dependencies": {
+    "@zapperbot/prisma": "workspace:*",
     "fastify": "^4.28.1",
     "zod": "^3.23.8"
   }
