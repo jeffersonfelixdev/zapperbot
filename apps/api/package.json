@@ -35,6 +35,7 @@
     "@fastify/rate-limit": "^9.1.0",
     "@fastify/swagger": "^8.15.0",
     "@fastify/swagger-ui": "^4.0.1",
+    "@zapperbot/mail": "workspace:*",
     "@zapperbot/prisma": "workspace:*",
     "axios": "^1.7.3",
     "bcrypt": "^5.1.1",
