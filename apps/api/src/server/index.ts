@@ -19,7 +19,7 @@ import { apiDocs } from './routes/api-docs'
 import { healthRoute } from './routes/health'
 import { createUserRoute } from './routes/user/create-user'
 
-const app = fastify().withTypeProvider<ZodTypeProvider>()
+const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>()
 
 app.setSerializerCompiler(serializerCompiler)
 app.setValidatorCompiler(validatorCompiler)

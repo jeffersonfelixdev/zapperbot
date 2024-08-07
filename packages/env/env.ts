@@ -16,14 +16,14 @@ export const env = createEnv({
       .string()
       .url()
       .refine((url) => url.startsWith('postgresql://')),
-    MAIL_PROVIDER: z.enum(['smtp', 'ethereal', 'sendgrid']).default('smtp'),
+    MAIL_PROVIDER: z.enum(['smtp', 'ethereal', 'sendgrid']).default('ethereal'),
     SMTP_HOST: z.string().optional(),
     SMTP_PORT: z.coerce.number().optional(),
     SMTP_USER: z.string().optional(),
     SMTP_PASSWORD: z.string().optional(),
     SENDGRID_API_KEY: z.string().optional(),
     QUEUE_PROVIDER: z.enum(['rabbitmq']).default('rabbitmq'),
-    RABBITMQ_URL: z.string().url(),
+    RABBITMQ_URL: z.string().url().default('amqp://localhost:5672'),
   },
   client: { NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}') },
   experimental__runtimeEnv: {

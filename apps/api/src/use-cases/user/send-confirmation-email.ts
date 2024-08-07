@@ -1,5 +1,5 @@
 import { mailProvider } from '@zapperbot/mail'
-import { DatabaseConnection } from '@zapperbot/prisma'
+import { DatabaseConnection, UserTokenType } from '@zapperbot/prisma'
 import { hashSync } from 'bcrypt'
 import { randomInt } from 'crypto'
 import { addMinutes } from 'date-fns'
@@ -23,6 +23,7 @@ export async function sendConfirmationEmailUseCase(email: string) {
       id: createId('token_'),
       userId: user.id,
       hash,
+      tokenType: UserTokenType.EMAIL_VERIFICATION,
       expireAt: addMinutes(new Date(), 30),
     },
   })
