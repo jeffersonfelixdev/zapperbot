@@ -16,10 +16,12 @@ export const env = createEnv({
       .string()
       .url()
       .refine((url) => url.startsWith('postgresql://')),
-    SMTP_HOST: z.string(),
-    SMTP_PORT: z.coerce.number(),
-    SMTP_USER: z.string(),
-    SMTP_PASSWORD: z.string(),
+    MAIL_PROVIDER: z.enum(['smtp', 'ethereal', 'sendgrid']).default('smtp'),
+    SMTP_HOST: z.string().optional(),
+    SMTP_PORT: z.coerce.number().optional(),
+    SMTP_USER: z.string().optional(),
+    SMTP_PASSWORD: z.string().optional(),
+    SENDGRID_API_KEY: z.string().optional(),
   },
   client: { NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}') },
   experimental__runtimeEnv: {

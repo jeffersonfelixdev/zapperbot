@@ -1,5 +1,8 @@
 import { env } from '@zapperbot/env'
-import nodemailer from 'nodemailer'
+
+import { EtherealMailProvider } from './impl/ethereal-mail-provider'
+import { SendGridMailProvider } from './impl/sendgrid-mail-provider'
+import { SmtpMailProvider } from './impl/smtp-mail-provider'
 
 interface SendMailProps {
   to: {
@@ -10,28 +13,20 @@ interface SendMailProps {
   body: string
 }
 
+const providers = {
+  smtp: SmtpMailProvider.getInstance(),
+  ethereal: EtherealMailProvider.getInstance(),
+  sendgrid: SendGridMailProvider.getInstance(),
+}
+
 export const sendMail = async ({ to, subject, body }: SendMailProps) => {
-  const res = await nodemailer
-    .createTransport({
-      host: env.SMTP_HOST,
-      port: env.SMTP_PORT,
-      secure: true,
-      auth: {
-        user: env.SMTP_USER,
-        pass: env.SMTP_PASSWORD,
-      },
-    })
-    .sendMail({
-      from: {
-        name: 'ZapperBot',
-        address: 'noreply@zapperbot.com',
-      },
-      to: {
-        name: to.name,
-        address: to.address,
-      },
-      subject,
-      html: body,
-    })
-  return res
+  const mailProvider = providers[env.MAIL_PROVIDER]
+  await mailProvider.sendMail({
+    to: {
+      name: to.name,
+      address: to.address,
+    },
+    subject,
+    body,
+  })
 }
