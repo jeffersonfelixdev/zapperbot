@@ -20,7 +20,7 @@ export async function sendConfirmationEmailUseCase(email: string) {
   const hash = hashSync(token, _SALT)
   await prisma.userToken.create({
     data: {
-      id: createId('token_'),
+      id: createId('token_', 20),
       userId: user.id,
       hash,
       tokenType: UserTokenType.EMAIL_VERIFICATION,
