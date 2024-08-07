@@ -1,0 +1,20 @@
+{
+  "name": "@zapperbot/queue",
+  "version": "1.0.0",
+  "private": true,
+  "devDependencies": {
+    "@types/amqplib": "^0.10.5",
+    "@types/node": "^22.1.0",
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": "@zapperbot/eslint-config/library"
+  },
+  "dependencies": {
+    "@zapperbot/env": "workspace:*",
+    "amqplib": "^0.10.4"
+  }
+}

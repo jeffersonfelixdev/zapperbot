@@ -1,4 +1,5 @@
 import { DatabaseConnection, User } from '@zapperbot/prisma'
+import { queueProvider } from '@zapperbot/queue'
 import { hashSync } from 'bcrypt'
 
 import { EmailExistsError } from '../../shared/errors/email-exists-error'
@@ -34,5 +35,6 @@ export async function createUserUseCase({
       passwordHash,
     },
   })
+  await queueProvider.sendToQueue('user.created', { user })
   return { user }
 }

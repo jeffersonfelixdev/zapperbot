@@ -22,6 +22,8 @@ export const env = createEnv({
     SMTP_USER: z.string().optional(),
     SMTP_PASSWORD: z.string().optional(),
     SENDGRID_API_KEY: z.string().optional(),
+    QUEUE_PROVIDER: z.enum(['rabbitmq']).default('rabbitmq'),
+    RABBITMQ_URL: z.string().url(),
   },
   client: { NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}') },
   experimental__runtimeEnv: {

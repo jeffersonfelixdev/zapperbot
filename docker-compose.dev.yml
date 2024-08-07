@@ -11,5 +11,16 @@ services:
       POSTGRES_USER: zapperbot
       POSTGRES_PASSWORD: zapperbot
 
+  rabbitmq:
+    image: rabbitmq:3
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: always
+    ports:
+      - '5672:5672'
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+
 volumes:
   postgres_data:
+  rabbitmq_data:

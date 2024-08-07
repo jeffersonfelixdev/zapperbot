@@ -1,6 +1,6 @@
-import { sendMail } from '@zapperbot/mail'
+import { mailProvider } from '@zapperbot/mail'
 
-sendMail({
+mailProvider.sendMail({
   to: {
     name: 'Jefferson Felix',
     address: 'jsfelix@gmail.com',
