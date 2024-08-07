@@ -2,7 +2,7 @@ import { queueProvider } from '@zapperbot/queue'
 
 import { sendConfirmationEmailUseCase } from '../use-cases/user/send-confirmation-email'
 
-async function runQueues() {
+export async function eventHandler() {
   queueProvider.listenToQueue('#', async ({ type, data }) => {
     switch (type) {
       case 'user.created':
@@ -11,4 +11,3 @@ async function runQueues() {
     }
   })
 }
-runQueues()

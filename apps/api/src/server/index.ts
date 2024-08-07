@@ -14,6 +14,7 @@ import {
 import jwkToPem from 'jwk-to-pem'
 
 import { errorHandler } from './error-handler'
+import { eventHandler } from './event-handler'
 import { apiDocs } from './routes/api-docs'
 import { healthRoute } from './routes/health'
 import { createUserRoute } from './routes/user/create-user'
@@ -101,3 +102,8 @@ app.register(healthRoute)
 
 // User
 app.register(createUserRoute)
+
+/*******************/
+/** Event Handler **/
+/*******************/
+eventHandler()
