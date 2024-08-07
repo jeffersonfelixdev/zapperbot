@@ -1,4 +1,4 @@
-import { mailProvider } from '@zapperbot/mail'
+import { compileTemplate, mailProvider } from '@zapperbot/mail'
 import { DatabaseConnection, UserTokenType } from '@zapperbot/prisma'
 import { hashSync } from 'bcrypt'
 import { randomInt } from 'crypto'
@@ -33,10 +33,9 @@ export async function sendConfirmationEmailUseCase(email: string) {
       address: user.email,
     },
     subject: 'Seu código de confirmação do ZapperBot',
-    body: `
-    <div>
-      <p>Olá, ${user.name}!</p>
-      <p>Seu código de confirmação é: <strong>${token}</strong></p>
-    </div>`,
+    body: compileTemplate('confirm-email.hbs', {
+      name: user.name,
+      token,
+    }),
   })
 }
