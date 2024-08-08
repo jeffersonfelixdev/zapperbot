@@ -19,6 +19,8 @@ import { apiDocs } from './routes/api-docs'
 import { healthRoute } from './routes/health'
 import { confirmEmailRoute } from './routes/user/confirm-email'
 import { createUserRoute } from './routes/user/create-user'
+import { getUserProfileRoute } from './routes/user/get-user-profile'
+import { signInRoute } from './routes/user/signin'
 
 const app = fastify({ logger: true }).withTypeProvider<ZodTypeProvider>()
 
@@ -104,6 +106,8 @@ app.register(healthRoute)
 // User
 app.register(createUserRoute)
 app.register(confirmEmailRoute)
+app.register(signInRoute)
+app.register(getUserProfileRoute)
 
 /*******************/
 /** Event Handler **/

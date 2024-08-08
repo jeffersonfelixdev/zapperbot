@@ -6,6 +6,7 @@ import {
   emailSchema,
   fullNameSchema,
   passwordSchema,
+  userSchema,
 } from '../../../types/schemas'
 import { createUserUseCase } from '../../../use-cases/user/create-user'
 
@@ -15,8 +16,8 @@ export async function createUserRoute(app: FastifyInstance) {
     {
       schema: {
         tags: ['Users'],
-        summary: 'Create user',
-        description: 'Create a new user',
+        summary: 'Criar usuário',
+        description: 'Cria um novo usuário na plataforma.',
         body: z.object({
           name: fullNameSchema(),
           email: emailSchema(),
@@ -24,13 +25,7 @@ export async function createUserRoute(app: FastifyInstance) {
         }),
         response: {
           201: z.object({
-            user: z.object({
-              id: z.string(),
-              name: z.string(),
-              email: z.string(),
-              createdAt: z.date(),
-              updatedAt: z.date(),
-            }),
+            user: userSchema,
           }),
         },
       },

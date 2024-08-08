@@ -2,7 +2,7 @@ import { FastifyInstance } from 'fastify'
 import { ZodTypeProvider } from 'fastify-type-provider-zod'
 import z from 'zod'
 
-import { emailSchema } from '../../../types/schemas'
+import { confirmationCodeSchema, emailSchema } from '../../../types/schemas'
 import { confirmEmailUseCase } from '../../../use-cases/user/confirm-email'
 
 export async function confirmEmailRoute(app: FastifyInstance) {
@@ -11,11 +11,12 @@ export async function confirmEmailRoute(app: FastifyInstance) {
     {
       schema: {
         tags: ['Users'],
-        summary: 'Confirm user email',
-        description: 'Confirm user email with provided token.',
+        summary: 'Confirmar email',
+        description:
+          'Confirma email do usuário com o token de confirmação enviado em seu email.',
         body: z.object({
           email: emailSchema(),
-          token: z.string(),
+          token: confirmationCodeSchema(),
         }),
         response: {
           204: z.undefined(),
