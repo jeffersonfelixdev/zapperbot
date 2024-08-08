@@ -1,20 +1,10 @@
-'use client'
-
-import { useTheme } from 'next-themes'
-
 interface LogoProps {
   size?: number
 }
 
 export function Logo({ size = 45 }: LogoProps) {
-  const { theme, systemTheme } = useTheme()
   const logoColor = '#2563eb'
-  let textColor = ''
-  if (theme === 'system') {
-    textColor = systemTheme === 'dark' ? '#f9f9fb' : '#09090b'
-  } else {
-    textColor = theme === 'dark' ? '#f9f9fb' : '#09090b'
-  }
+  const textColor = '#09090b'
 
   return (
     <svg

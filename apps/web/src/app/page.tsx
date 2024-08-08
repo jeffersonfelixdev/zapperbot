@@ -1,8 +1,6 @@
 import { Logo } from '@/components/icons/logo'
 import { EntrepreneurManagingBusiness } from '@/components/images/entrepreneur-managing-business'
-import { ModeToggle } from '@/components/mode-toggle'
 import { Plans } from '@/components/pages/index/plans'
-import { PaymentLink } from '@/components/payment-link'
 import {
   Avatar,
   AvatarFallback,
@@ -60,8 +58,7 @@ export default function Home() {
             </Button>
           </div>
           <div className="flex gap-2">
-            <ModeToggle />
-            <Button className="hidden lg:flex" asChild>
+            <Button size="lg" className="hidden font-semibold md:flex" asChild>
               <Link href="https://app.zapperbot.com/signin">Entrar</Link>
             </Button>
             <DropdownMenu>
@@ -100,7 +97,7 @@ export default function Home() {
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-            <Button size="icon" className="flex lg:hidden" asChild>
+            <Button size="icon" className="flex md:hidden" asChild>
               <Link href="https://app.zapperbot.com/signin">
                 <LogInIcon />
               </Link>
@@ -122,12 +119,13 @@ export default function Home() {
                   e conversões.
                 </p>
                 <div className="flex flex-col gap-4 min-[480px]:flex-row">
-                  <Button size="lg" asChild>
-                    <PaymentLink plan="start" recurrence="monthly">
-                      Experimente Grátis por 7 dias
-                    </PaymentLink>
+                  <Button size="lg" className="font-semibold" asChild>
+                    <Link href="#planos">Experimente Grátis por 7 dias*</Link>
                   </Button>
                 </div>
+                <p className="text-right text-sm/relaxed text-muted-foreground">
+                  * Plano Start Mensal
+                </p>
               </div>
               <div className="flex items-center justify-center">
                 <EntrepreneurManagingBusiness />

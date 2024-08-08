@@ -2,6 +2,7 @@
 
 import { PaymentLink } from '@/components/payment-link'
 import {
+  Badge,
   Button,
   Card,
   CardContent,
@@ -40,6 +41,15 @@ export function Plans() {
       <div className="grid gap-8 md:grid-cols-3">
         <Card className="flex flex-col">
           <CardHeader>
+            {planType === 'monthly' ? (
+              <Badge className="mx-auto mb-1 flex items-center justify-center bg-emerald-600 px-8 py-2 text-center text-base hover:bg-emerald-600/80">
+                Experimente Grátis por 7 dias
+              </Badge>
+            ) : (
+              <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base text-black hover:bg-zinc-200/80">
+                Perfeito para pequenos negócios
+              </Badge>
+            )}
             <CardTitle>Start</CardTitle>
             <CardDescription>
               Os principais recursos a um ótimo custo-benefício
@@ -80,15 +90,19 @@ export function Plans() {
             <p className="text-3xl font-bold">
               {planType === 'yearly' ? 'R$ 599/ano' : 'R$ 59/mês'}
             </p>
-            <Button size="lg" asChild>
+            <Button size="lg" className="uppercase" asChild>
               <PaymentLink plan="start" recurrence={planType}>
                 Quero este plano
               </PaymentLink>
             </Button>
           </CardFooter>
         </Card>
-        <Card className="flex flex-col">
+
+        <Card className="flex flex-col bg-primary-foreground">
           <CardHeader>
+            <Badge className="mx-auto mb-1 flex items-center justify-center px-8 py-2 text-center text-base">
+              Escolha recomendada
+            </Badge>
             <CardTitle>Premium</CardTitle>
             <CardDescription>
               Coloque seu time de vendas na plataforma
@@ -122,13 +136,16 @@ export function Plans() {
             <p className="text-3xl font-bold">
               {planType === 'yearly' ? 'R$ 1.299/ano' : 'R$ 129/mês'}
             </p>
-            <Button className="uppercase" disabled size="lg">
-              Em breve
+            <Button className="uppercase" size="lg">
+              Quero este plano
             </Button>
           </CardFooter>
         </Card>
         <Card className="flex flex-col">
           <CardHeader>
+            <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base text-black hover:bg-zinc-200/80">
+              A opção mais completa
+            </Badge>
             <CardTitle>Pro</CardTitle>
             <CardDescription>
               Integre a ferramenta com seu checkout de pagamentos e não perca
@@ -167,8 +184,8 @@ export function Plans() {
             <p className="text-3xl font-bold">
               {planType === 'yearly' ? 'R$ 1.999/ano' : 'R$ 199/mês'}
             </p>
-            <Button className="uppercase" disabled size="lg">
-              Em breve
+            <Button className="uppercase" size="lg">
+              Quero este plano
             </Button>
           </CardFooter>
         </Card>
