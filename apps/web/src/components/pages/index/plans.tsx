@@ -1,7 +1,6 @@
 'use client'
 
 import { PaymentLink } from '@/components/payment-link'
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import {
   Button,
   Card,
@@ -10,6 +9,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  ToggleGroup,
+  ToggleGroupItem,
 } from '@zapperbot/ui'
 import { ArrowLeftIcon, CheckIcon } from 'lucide-react'
 import { useEffect, useState } from 'react'

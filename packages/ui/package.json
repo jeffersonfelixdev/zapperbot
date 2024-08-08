@@ -6,7 +6,7 @@
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build:css": "tailwindcss -i src/globals.css -o dist/globals.css -c tailwind.config.ts --full",
+    "build:css": "rm -rf dist/globals.css && tailwindcss -i src/globals.css -o dist/globals.css -c tailwind.config.ts --full",
     "build:react": "tsup",
     "build": "pnpm build:css && pnpm build:react"
   },
@@ -32,6 +32,8 @@
     "@radix-ui/react-dropdown-menu": "^2.1.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-toggle": "^1.1.0",
+    "@radix-ui/react-toggle-group": "^1.1.0",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "lucide-react": "^0.417.0",
