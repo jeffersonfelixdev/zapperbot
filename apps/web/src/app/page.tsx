@@ -4,7 +4,6 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { Plans } from '@/components/pages/index/plans'
 import { PaymentLink } from '@/components/payment-link'
 import { Avatar } from '@/components/ui/avatar'
-import { Button } from '@/components/ui/button'
 import {
   Card,
   CardContent,
@@ -20,6 +19,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
 import { AvatarFallback } from '@radix-ui/react-avatar'
+import { Button } from '@zapperbot/ui'
 import {
   BadgeInfoIcon,
   BotIcon,

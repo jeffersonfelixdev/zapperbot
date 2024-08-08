@@ -1,0 +1,38 @@
+{
+  "name": "@zapperbot/ui",
+  "version": "1.0.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build:css": "tailwindcss -i src/globals.css -o dist/globals.css -c tailwind.config.ts --full",
+    "build:react": "tsup",
+    "build": "pnpm build:css && pnpm build:react"
+  },
+  "devDependencies": {
+    "@types/node": "^22.1.0",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@zapperbot/eslint-config": "workspace:*",
+    "@zapperbot/prettier": "workspace:*",
+    "@zapperbot/tsconfig": "workspace:*",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8",
+    "react": "^18",
+    "tailwindcss": "^3.4.1",
+    "tsup": "^8.2.4"
+  },
+  "prettier": "@zapperbot/prettier",
+  "eslintConfig": {
+    "extends": "@zapperbot/eslint-config/library"
+  },
+  "dependencies": {
+    "@radix-ui/react-slot": "^1.1.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.417.0",
+    "tailwind-merge": "^2.4.0",
+    "tailwindcss-animate": "^1.0.7"
+  }
+}

@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Poppins } from 'next/font/google'
+import '@zapperbot/ui/dist/globals.css'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 

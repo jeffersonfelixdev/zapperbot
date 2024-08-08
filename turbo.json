@@ -20,7 +20,8 @@
       "dependsOn": [
         "^dev",
         "@zapperbot/prisma#db:generate",
-        "@zapperbot/prisma#db:push"
+        "@zapperbot/prisma#db:push",
+        "@zapperbot/ui#build"
       ],
       "cache": false,
       "persistent": true
