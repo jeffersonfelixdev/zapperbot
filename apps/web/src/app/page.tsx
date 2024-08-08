@@ -4,20 +4,22 @@ import { ModeToggle } from '@/components/mode-toggle'
 import { Plans } from '@/components/pages/index/plans'
 import { PaymentLink } from '@/components/payment-link'
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card'
-import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
-import { Avatar, AvatarFallback, Button } from '@zapperbot/ui'
+import {
+  Avatar,
+  AvatarFallback,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@zapperbot/ui'
 import {
   BadgeInfoIcon,
   BotIcon,
