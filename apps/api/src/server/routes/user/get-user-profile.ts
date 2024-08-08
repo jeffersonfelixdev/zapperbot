@@ -20,7 +20,7 @@ export async function getUserProfileRoute(app: FastifyInstance) {
           description: 'Obtém o perfil do usuário autenticado',
           response: {
             200: z.object({
-              user: userSchema,
+              user: userSchema(),
             }),
           },
         },

@@ -1,12 +1,13 @@
 import z from 'zod'
 
-export const userSchema = z.object({
-  id: z.string({ description: 'Id do usuário' }),
-  name: z.string({ description: 'Nome do usuário' }),
-  email: z.string({ description: 'Email do usuário' }).email(),
-  createdAt: z.date({ description: 'Data de criação do usuário' }),
-  updatedAt: z.date({ description: 'Data de atualização do usuário' }),
-})
+export const userSchema = () =>
+  z.object({
+    id: z.string({ description: 'Id do usuário' }),
+    name: z.string({ description: 'Nome do usuário' }),
+    email: z.string({ description: 'Email do usuário' }).email(),
+    createdAt: z.date({ description: 'Data de criação do usuário' }),
+    updatedAt: z.date({ description: 'Data de atualização do usuário' }),
+  })
 
 export const fullNameSchema = (message = 'Nome completo do usuário') =>
   z

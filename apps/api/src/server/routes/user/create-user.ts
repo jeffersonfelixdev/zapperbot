@@ -25,7 +25,7 @@ export async function createUserRoute(app: FastifyInstance) {
         }),
         response: {
           201: z.object({
-            user: userSchema,
+            user: userSchema(),
           }),
         },
       },

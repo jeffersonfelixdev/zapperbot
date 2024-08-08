@@ -26,7 +26,7 @@ export async function signInRoute(app: FastifyInstance) {
         }),
         response: {
           201: z.object({
-            user: userSchema,
+            user: userSchema(),
             token: confirmationCodeSchema(),
           }),
         },
