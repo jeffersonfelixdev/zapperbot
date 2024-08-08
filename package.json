@@ -5,7 +5,11 @@
     "docker:up": "docker compose -f docker-compose.dev.yml up -d",
     "build": "pnpm docker:up && turbo build",
     "dev": "pnpm docker:up && turbo dev",
-    "lint": "turbo lint"
+    "lint": "turbo lint",
+    "clean": "bin/clean.sh",
+    "build:web": "bin/build-web.sh",
+    "build:api": "bin/build-api.sh",
+    "deploy": "bin/deploy.sh"
   },
   "devDependencies": {
     "turbo": "^2.0.11"

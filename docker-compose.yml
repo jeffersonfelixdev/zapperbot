@@ -1,0 +1,187 @@
+version: "3"
+
+services:
+  traefik:
+    image: "traefik:v3.1"
+    hostname: "traefik"
+    command:
+      - "--providers.swarm=true"
+      - "--providers.swarm.endpoint=unix:///var/run/docker.sock"
+      - "--providers.swarm.exposedByDefault=false"
+      - "--entryPoints.web.address=:80"
+      - "--entryPoints.websecure.address=:443"
+      - "--certificatesresolvers.zbresolver.acme.httpchallenge=true"
+      - "--certificatesresolvers.zbresolver.acme.httpchallenge.entrypoint=web"
+      - "--certificatesresolvers.zbresolver.acme.email=postmaster@zapperbot.com"
+      - "--certificatesresolvers.zbresolver.acme.storage=/letsencrypt/acme.json"
+      - "--api.insecure=true"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - "./acme.json:/letsencrypt/acme.json"
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  portainer:
+    image: "portainer/portainer-ce:latest"
+    hostname: "portainer"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+      - "portainer_data:/data portainer/portainer-ce:latest"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.portainer-router.rule=Host(`ptn-da426eb01e.zapperbot.com`)"
+        - "traefik.http.routers.portainer-router.entrypoints=websecure"
+        - "traefik.http.routers.portainer-router.tls=true"
+        - "traefik.http.routers.portainer-router.tls.certresolver=zbresolver"
+        - "traefik.http.services.portainer-service.loadbalancer.server.port=9000"
+
+  postgres:
+    image: "bitnami/postgresql:16"
+    hostname: "postgres"
+    environment:
+      - "POSTGRESQL_DATABASE=${POSTGRESQL_DATABASE}"
+      - "POSTGRESQL_USERNAME=${POSTGRESQL_USERNAME}"
+      - "POSTGRESQL_PASSWORD=${POSTGRESQL_PASSWORD}"
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres_data:/bitnami/postgresql"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  rabbitmq:
+    image: "rabbitmq:3"
+    hostname: "rabbitmq"
+    volumes:
+      - "rabbitmq_data:/var/lib/rabbitmq"
+    environment:
+      - "RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}"
+      - "RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  redis:
+    image: "bitnami/redis:latest"
+    hostname: "redis"
+    environment:
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+    volumes:
+      - "redis_data:/bitnami/redis/data"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  mongodb:
+    image: "mongo:latest"
+    hostname: "mongodb"
+    environment:
+      - "MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}"
+      - "MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}"
+    volumes:
+      - "mongodb_data:/data/db"
+    deploy:
+      placement:
+        constraints:
+          - "node.role==manager"
+
+  evo-admin:
+    image: "atendai/evolution-api:latest"
+    hostname: "evo-admin"
+    environment:
+      - "SERVER_URL=${SERVER_URL}"
+      - "AUTHENTICATION_API_KEY=${AUTHENTICATION_API_KEY}"
+      - "CACHE_REDIS_ENABLED=true"
+      - "CACHE_REDIS_URI=${CACHE_REDIS_URI}"
+      - "DATABASE_ENABLED=true"
+      - "DATABASE_CONNECTION_URI=${DATABASE_CONNECTION_URI}"
+      - "DATABASE_CONNECTION_DB_PREFIX_NAME=zapperbot"
+      - "DATABASE_SAVE_DATA_CHATS=true"
+      - "DATABASE_SAVE_DATA_CONTACTS=true"
+      - "DATABASE_SAVE_DATA_INSTANCE=true"
+      - "DATABASE_SAVE_DATA_NEW_MESSAGE=true"
+      - "DATABASE_SAVE_MESSAGE_UPDATE=true"
+      - "QRCODE_COLOR=2563eb"
+    depends_on:
+      - redis
+      - mongodb
+    volumes:
+      - "evolution_store:/evolution/store"
+      - "evolution_instances:/evolution/instances"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.evo-admin-router.rule=Host(`evo-046d1a923f.zapperbot.com`)"
+        - "traefik.http.routers.evo-admin-router.entrypoints=websecure"
+        - "traefik.http.routers.evo-admin-router.tls=true"
+        - "traefik.http.routers.evo-admin-router.tls.certresolver=zbresolver"
+        - "traefik.http.services.evo-admin-service.loadbalancer.server.port=8080"
+
+  registry:
+    image: "registry:2.8"
+    hostname: "registry"
+    environment:
+      - "REGISTRY_AUTH=htpasswd"
+      - "REGISTRY_AUTH_HTPASSWD_REALM=Registry"
+      - "REGISTRY_AUTH_HTPASSWD_PATH=/auth/registry.password"
+      - "REGISTRY_STORAGE_FILESYSTEM_ROOTDIRECTORY=/data"
+    volumes:
+      - "registry_data:/data"
+      - ".registry.password:/auth/registry.password"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.registry-router.rule=Host(`registry.zapperbot.com`)"
+        - "traefik.http.routers.registry-router.entrypoints=websecure"
+        - "traefik.http.routers.registry-router.tls=true"
+        - "traefik.http.routers.registry-router.tls.certresolver=zbresolver"
+        - "traefik.http.services.registry-service.loadbalancer.server.port=5000"
+
+  api:
+    image: "registry.zapperbot.com/api:latest"
+    hostname: "api"
+    env_file: ".env"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.api-router.rule=Host(`api.zapperbot.com`)"
+        - "traefik.http.routers.api-router.entrypoints=websecure"
+        - "traefik.http.routers.api-router.tls=true"
+        - "traefik.http.routers.api-router.tls.certresolver=zbresolver"
+        - "traefik.http.services.api-service.loadbalancer.server.port=3333"
+
+  web:
+    image: "registry.zapperbot.com/web:latest"
+    hostname: "web"
+    env_file: ".env.web"
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.web-router.rule=Host(`zapperbot.com`)"
+        - "traefik.http.routers.web-router.entrypoints=websecure"
+        - "traefik.http.routers.web-router.tls=true"
+        - "traefik.http.routers.web-router.tls.certresolver=zbresolver"
+        - "traefik.http.services.web-service.loadbalancer.server.port=3000"
+
+volumes:
+  portainer_data:
+  postgres_data:
+  rabbitmq_data:
+  redis_data:
+  mongodb_data:
+  evolution_store:
+  evolution_instances:
+  registry_data:
