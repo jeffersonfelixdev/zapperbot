@@ -25,3 +25,4 @@ export {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from './components/ui/dropdown-menu'
+export { Separator } from './components/ui/separator'
