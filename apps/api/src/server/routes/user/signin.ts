@@ -5,7 +5,6 @@ import z from 'zod'
 import {
   confirmationCodeSchema,
   emailSchema,
-  passwordSchema,
   userSchema,
 } from '../../../types/schemas'
 import { signInUseCase } from '../../../use-cases/user/sign-in-use-case'
@@ -20,7 +19,10 @@ export async function signInRoute(app: FastifyInstance) {
         description: 'Autentica um usuário na plataforma com email e senha.',
         body: z.object({
           email: emailSchema(),
-          password: passwordSchema(),
+          password: z.string({
+            required_error: 'Senha é obrigatória.',
+            invalid_type_error: 'Senha deve ser em formato de texto.',
+          }),
         }),
         response: {
           201: z.object({

@@ -14,9 +14,8 @@ export async function getUserProfileRoute(app: FastifyInstance) {
       '/users/profile',
       {
         schema: {
-          operationId: 'getProfile',
-          security: [{ idToken: [] }],
           tags: ['Users'],
+          security: [{ token: [] }],
           summary: 'Obter perfil do usuário',
           description: 'Obtém o perfil do usuário autenticado',
           response: {
