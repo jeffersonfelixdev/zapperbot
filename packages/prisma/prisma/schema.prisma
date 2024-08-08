@@ -18,7 +18,8 @@ model User {
   createdAt     DateTime @default(now()) @map("created_at") @db.Timestamptz()
   updatedAt     DateTime @updatedAt @map("updated_at") @db.Timestamptz()
 
-  tokens UserToken[]
+  tokens        UserToken[]
+  organizations OrganizationMember[]
 
   @@map("users")
 }
@@ -39,10 +40,40 @@ model UserToken {
   createdAt DateTime      @default(now()) @map("created_at") @db.Timestamptz()
   expireAt  DateTime      @map("expire_at") @db.Timestamptz()
 
-  User User? @relation(fields: [userId], references: [id])
+  user User? @relation(fields: [userId], references: [id])
 
   @@unique([userId, tokenType])
   @@map("user_tokens")
+}
+
+model Organization {
+  id        String   @id @db.VarChar(50)
+  name      String   @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz()
+  expireAt  DateTime @map("expire_at") @db.Timestamptz()
+
+  members OrganizationMember[]
+
+  @@map("organizations")
+}
+
+enum UserRoleType {
+  ADMIN
+  ATTENDANT
+
+  @@map("user_role_type")
+}
+
+model OrganizationMember {
+  organizationId String       @map("organization_id") @db.VarChar(50)
+  userId         String       @map("user_id") @db.VarChar(50)
+  role           UserRoleType
+
+  organization Organization @relation(fields: [organizationId], references: [id])
+  user         User         @relation(fields: [userId], references: [id])
+
+  @@id([organizationId, userId])
+  @@map("organization_members")
 }
 
 enum PlanType {
