@@ -1,15 +1,20 @@
 {
   "name": "@zapperbot/mail",
   "version": "1.0.0",
-  "main": "./index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
   "types": "./index.ts",
   "private": true,
+  "scripts": {
+    "build": "bin/copy-files.sh && tsup"
+  },
   "devDependencies": {
     "@types/node": "^22.1.0",
     "@types/nodemailer": "^6.4.15",
     "@zapperbot/eslint-config": "workspace:*",
     "@zapperbot/prettier": "workspace:*",
-    "@zapperbot/tsconfig": "workspace:*"
+    "@zapperbot/tsconfig": "workspace:*",
+    "tsup": "^8.2.4"
   },
   "prettier": "@zapperbot/prettier",
   "eslintConfig": {

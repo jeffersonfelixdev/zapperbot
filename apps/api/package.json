@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "dotenv -e ./.env -e ../../.env -- tsx watch src/server/index.ts",
-    "prelint": "dotenv -e ./.env -e ../../.env -- tsc --noemit",
     "lint": "eslint --ext .ts ./src",
     "lint:fix": "dotenv -e ./.env -e ../../.env -- eslint --ext .ts ./src --fix",
     "build": "dotenv -e ./.env -e ../../.env -- tsup",
@@ -18,7 +17,8 @@
     "@zapperbot/tsconfig": "workspace:*",
     "dotenv-cli": "^7.4.2",
     "tsup": "^8.2.4",
-    "tsx": "^4.16.5"
+    "tsx": "^4.16.5",
+    "typescript": "5.3.3"
   },
   "prettier": "@zapperbot/prettier",
   "eslintConfig": {

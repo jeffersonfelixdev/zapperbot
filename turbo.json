@@ -3,9 +3,15 @@
   "ui": "tui",
   "tasks": {
     "build": {
-      "dependsOn": ["^build"],
-      "inputs": ["$TURBO_DEFAULT$", ".env*"],
-      "outputs": [".next/**", "!.next/cache/**", "dist/**"]
+      "dependsOn": ["^build", "@zapperbot/prisma#db:generate"],
+      "outputs": [
+        ".next/**",
+        "!.next/cache/**",
+        "dist/**",
+        "build/**",
+        "public/__ENV.js"
+      ],
+      "inputs": ["$TURBO_DEFAULT$", ".env"]
     },
     "lint": {
       "dependsOn": ["^lint"]

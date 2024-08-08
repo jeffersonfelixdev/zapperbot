@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "docker:up": "docker compose -f docker-compose.dev.yml up -d",
-    "build": "turbo build",
+    "build": "pnpm docker:up && turbo build",
     "dev": "pnpm docker:up && turbo dev",
     "lint": "turbo lint"
   },

@@ -37,7 +37,7 @@ importers:
         version: 4.0.1
       '@zapperbot/env':
         specifier: workspace:*
-        version: link:../../packages/env
+        version: link:../../config/env
       '@zapperbot/mail':
         specifier: workspace:*
         version: link:../../packages/mail
@@ -98,10 +98,38 @@ importers:
         version: 7.4.2
       tsup:
         specifier: ^8.2.4
-        version: 8.2.4(tsx@4.16.5)(typescript@5.5.4)(yaml@2.5.0)
+        version: 8.2.4(tsx@4.16.5)(typescript@5.3.3)(yaml@2.5.0)
       tsx:
         specifier: ^4.16.5
         version: 4.16.5
+      typescript:
+        specifier: 5.3.3
+        version: 5.3.3
+
+  config/env:
+    dependencies:
+      '@t3-oss/env-nextjs':
+        specifier: ^0.7.0
+        version: 0.7.3(typescript@5.5.4)(zod@3.23.8)
+      zod:
+        specifier: ^3.23.8
+        version: 3.23.8
+    devDependencies:
+      '@types/node':
+        specifier: ^22.1.0
+        version: 22.1.0
+      '@zapperbot/eslint-config':
+        specifier: workspace:*
+        version: link:../eslint-config
+      '@zapperbot/prettier':
+        specifier: workspace:*
+        version: link:../prettier
+      '@zapperbot/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
+      esbuild:
+        specifier: ^0.23.0
+        version: 0.23.0
 
   config/eslint-config:
     devDependencies:
@@ -142,28 +170,6 @@ importers:
         specifier: workspace:*
         version: link:../../config/tsconfig
 
-  packages/env:
-    dependencies:
-      '@t3-oss/env-nextjs':
-        specifier: ^0.11.0
-        version: 0.11.0(typescript@5.5.4)(zod@3.23.8)
-      zod:
-        specifier: ^3.23.8
-        version: 3.23.8
-    devDependencies:
-      '@types/node':
-        specifier: ^22.1.0
-        version: 22.1.0
-      '@zapperbot/eslint-config':
-        specifier: workspace:*
-        version: link:../../config/eslint-config
-      '@zapperbot/prettier':
-        specifier: workspace:*
-        version: link:../../config/prettier
-      '@zapperbot/tsconfig':
-        specifier: workspace:*
-        version: link:../../config/tsconfig
-
   packages/mail:
     dependencies:
       '@sendgrid/mail':
@@ -171,7 +177,7 @@ importers:
         version: 8.1.3
       '@zapperbot/env':
         specifier: workspace:*
-        version: link:../env
+        version: link:../../config/env
       handlebars:
         specifier: ^4.7.8
         version: 4.7.8
@@ -194,6 +200,9 @@ importers:
       '@zapperbot/tsconfig':
         specifier: workspace:*
         version: link:../../config/tsconfig
+      tsup:
+        specifier: ^8.2.4
+        version: 8.2.4(tsx@4.16.5)(typescript@5.5.4)(yaml@2.5.0)
 
   packages/prisma:
     dependencies:
@@ -216,6 +225,9 @@ importers:
       prisma:
         specifier: ^5.17.0
         version: 5.17.0
+      tsup:
+        specifier: ^8.2.4
+        version: 8.2.4(tsx@4.16.5)(typescript@5.3.3)(yaml@2.5.0)
       typescript:
         specifier: 5.3.3
         version: 5.3.3
@@ -224,7 +236,7 @@ importers:
     dependencies:
       '@zapperbot/env':
         specifier: workspace:*
-        version: link:../env
+        version: link:../../config/env
       amqplib:
         specifier: ^0.10.4
         version: 0.10.4
@@ -244,6 +256,9 @@ importers:
       '@zapperbot/tsconfig':
         specifier: workspace:*
         version: link:../../config/tsconfig
+      tsup:
+        specifier: ^8.2.4
+        version: 8.2.4(tsx@4.16.5)(typescript@5.5.4)(yaml@2.5.0)
 
 packages:
 
@@ -792,19 +807,19 @@ packages:
     resolution: {integrity: sha512-Wg5iKSUOER83/cfY6rbPa+o3ChnYzWwv1OcsR8gCV8SKi+sUPIMroildimlnb72DBkQxcbylxng1W7f0RIX7MQ==}
     engines: {node: '>=12.*'}
 
-  '@t3-oss/env-core@0.11.0':
-    resolution: {integrity: sha512-PSalC5bG0a7XbyoLydiQdAnx3gICX6IQNctvh+TyLrdFxsxgocdj9Ui7sd061UlBzi+z4aIGjnem1kZx9QtUgQ==}
+  '@t3-oss/env-core@0.7.3':
+    resolution: {integrity: sha512-hhtj59TKC6TKVdwJ0CcbKsvkr9R8Pc/SNKd4IgGUIC9T9X6moB8EZZ3FTJdABA/h9UABCK4J+KsF8gzmvMvHPg==}
     peerDependencies:
-      typescript: '>=5.0.0'
+      typescript: '>=4.7.2'
       zod: ^3.0.0
     peerDependenciesMeta:
       typescript:
         optional: true
 
-  '@t3-oss/env-nextjs@0.11.0':
-    resolution: {integrity: sha512-gcRrY2CzSMSrxDf5+fKCUfzbBK125IxOcJHcoMVdjcTmYxEgIZFZ5qPPtngOY3UmTeXSqRZOGuNiosqWTFTkMw==}
+  '@t3-oss/env-nextjs@0.7.3':
+    resolution: {integrity: sha512-90TNffS17vjkQwfYyMUb4Zw9yqHwFV40f78qFug4JiQa5+N6DydTdlLOpzOcj8Cna/qpAVDwMSypofF/TVQDuA==}
     peerDependencies:
-      typescript: '>=5.0.0'
+      typescript: '>=4.7.2'
       zod: ^3.0.0
     peerDependenciesMeta:
       typescript:
@@ -3316,15 +3331,15 @@ snapshots:
     transitivePeerDependencies:
       - debug
 
-  '@t3-oss/env-core@0.11.0(typescript@5.5.4)(zod@3.23.8)':
+  '@t3-oss/env-core@0.7.3(typescript@5.5.4)(zod@3.23.8)':
     dependencies:
       zod: 3.23.8
     optionalDependencies:
       typescript: 5.5.4
 
-  '@t3-oss/env-nextjs@0.11.0(typescript@5.5.4)(zod@3.23.8)':
+  '@t3-oss/env-nextjs@0.7.3(typescript@5.5.4)(zod@3.23.8)':
     dependencies:
-      '@t3-oss/env-core': 0.11.0(typescript@5.5.4)(zod@3.23.8)
+      '@t3-oss/env-core': 0.7.3(typescript@5.5.4)(zod@3.23.8)
       zod: 3.23.8
     optionalDependencies:
       typescript: 5.5.4
@@ -5439,6 +5454,32 @@ snapshots:
       strip-bom: 3.0.0
 
   tslib@2.6.3: {}
+
+  tsup@8.2.4(tsx@4.16.5)(typescript@5.3.3)(yaml@2.5.0):
+    dependencies:
+      bundle-require: 5.0.0(esbuild@0.23.0)
+      cac: 6.7.14
+      chokidar: 3.6.0
+      consola: 3.2.3
+      debug: 4.3.6
+      esbuild: 0.23.0
+      execa: 5.1.1
+      globby: 11.1.0
+      joycon: 3.1.1
+      picocolors: 1.0.1
+      postcss-load-config: 6.0.1(tsx@4.16.5)(yaml@2.5.0)
+      resolve-from: 5.0.0
+      rollup: 4.20.0
+      source-map: 0.8.0-beta.0
+      sucrase: 3.35.0
+      tree-kill: 1.2.2
+    optionalDependencies:
+      typescript: 5.3.3
+    transitivePeerDependencies:
+      - jiti
+      - supports-color
+      - tsx
+      - yaml
 
   tsup@8.2.4(tsx@4.16.5)(typescript@5.5.4)(yaml@2.5.0):
     dependencies:

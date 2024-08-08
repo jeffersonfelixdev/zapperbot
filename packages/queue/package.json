@@ -2,12 +2,19 @@
   "name": "@zapperbot/queue",
   "version": "1.0.0",
   "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsup"
+  },
   "devDependencies": {
     "@types/amqplib": "^0.10.5",
     "@types/node": "^22.1.0",
     "@zapperbot/eslint-config": "workspace:*",
     "@zapperbot/prettier": "workspace:*",
-    "@zapperbot/tsconfig": "workspace:*"
+    "@zapperbot/tsconfig": "workspace:*",
+    "tsup": "^8.2.4"
   },
   "prettier": "@zapperbot/prettier",
   "eslintConfig": {
