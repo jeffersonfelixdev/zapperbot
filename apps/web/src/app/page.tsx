@@ -3,7 +3,6 @@ import { EntrepreneurManagingBusiness } from '@/components/images/entrepreneur-m
 import { ModeToggle } from '@/components/mode-toggle'
 import { Plans } from '@/components/pages/index/plans'
 import { PaymentLink } from '@/components/payment-link'
-import { Avatar } from '@/components/ui/avatar'
 import {
   Card,
   CardContent,
@@ -18,8 +17,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
-import { AvatarFallback } from '@radix-ui/react-avatar'
-import { Button } from '@zapperbot/ui'
+import { Avatar, AvatarFallback, Button } from '@zapperbot/ui'
 import {
   BadgeInfoIcon,
   BotIcon,
