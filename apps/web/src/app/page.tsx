@@ -43,7 +43,7 @@ export default function Home() {
               <Logo />
             </Link>
           </div>
-          <div className="ml-6 hidden flex-1 gap-2 md:flex lg:ml-12">
+          <div className="ml-4 hidden flex-1 gap-2 md:flex lg:ml-8">
             <Button variant="ghost" asChild>
               <Link href="#recursos">Recursos</Link>
             </Button>

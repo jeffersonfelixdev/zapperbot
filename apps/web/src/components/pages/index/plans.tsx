@@ -42,11 +42,11 @@ export function Plans() {
         <Card className="flex flex-col">
           <CardHeader>
             {planType === 'monthly' ? (
-              <Badge className="mx-auto mb-1 flex items-center justify-center bg-emerald-600 px-8 py-2 text-center text-base hover:bg-emerald-600/80">
+              <Badge className="mx-auto mb-1 flex items-center justify-center bg-emerald-600 px-8 py-2 text-center text-base font-normal hover:bg-emerald-600/80">
                 Experimente Grátis por 7 dias
               </Badge>
             ) : (
-              <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base text-black hover:bg-zinc-200/80">
+              <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base font-normal text-black hover:bg-zinc-200/80">
                 Perfeito para pequenos negócios
               </Badge>
             )}
@@ -100,7 +100,7 @@ export function Plans() {
 
         <Card className="flex flex-col bg-primary-foreground">
           <CardHeader>
-            <Badge className="mx-auto mb-1 flex items-center justify-center px-8 py-2 text-center text-base">
+            <Badge className="mx-auto mb-1 flex items-center justify-center px-8 py-2 text-center text-base font-normal">
               Escolha recomendada
             </Badge>
             <CardTitle>Premium</CardTitle>
@@ -143,7 +143,7 @@ export function Plans() {
         </Card>
         <Card className="flex flex-col">
           <CardHeader>
-            <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base text-black hover:bg-zinc-200/80">
+            <Badge className="mx-auto mb-1 flex items-center justify-center bg-zinc-200 px-8 py-2 text-center text-base font-normal text-black hover:bg-zinc-200/80">
               A opção mais completa
             </Badge>
             <CardTitle>Pro</CardTitle>
