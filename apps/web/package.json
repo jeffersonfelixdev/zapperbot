@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "dotenv -e ./.env -e ../../.env -- next dev",
+    "build": "dotenv -e ./.env -e ../../.env -- next build",
+    "start": "dotenv -e ./.env -e ../../.env -- next start",
+    "lint": "dotenv -e ./.env -e ../../.env -- next lint"
   },
   "dependencies": {
     "@zapperbot/ui": "workspace:*",
@@ -25,6 +25,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "dotenv-cli": "^7.4.2",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.2.5",
     "eslint-plugin-tailwindcss": "^3.17.4",

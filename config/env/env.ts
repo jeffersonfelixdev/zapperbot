@@ -25,10 +25,20 @@ export const env = createEnv({
     QUEUE_PROVIDER: z.enum(['rabbitmq']).default('rabbitmq'),
     RABBITMQ_URL: z.string().url().default('amqp://localhost:5672'),
   },
-  client: { NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}') },
+  client: {
+    NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: z.string().default('{}'),
+    NEXT_PUBLIC_START_MONTHLY_PAYMENT_LINK: z.string().optional(),
+    NEXT_PUBLIC_START_YEARLY_PAYMENT_LINK: z.string().optional(),
+  },
   experimental__runtimeEnv: {
     NEXT_PUBLIC_APP_JWK_PUBLIC_KEY: getRuntimeVariable(
       'NEXT_PUBLIC_APP_JWK_PUBLIC_KEY',
+    ),
+    NEXT_PUBLIC_START_MONTHLY_PAYMENT_LINK: getRuntimeVariable(
+      'NEXT_PUBLIC_START_MONTHLY_PAYMENT_LINK',
+    ),
+    NEXT_PUBLIC_START_YEARLY_PAYMENT_LINK: getRuntimeVariable(
+      'NEXT_PUBLIC_START_YEARLY_PAYMENT_LINK',
     ),
   },
   onValidationError(error) {
