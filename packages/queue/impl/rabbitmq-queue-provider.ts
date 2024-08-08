@@ -1,10 +1,10 @@
 import { env } from '@zapperbot/env'
-import ampq from 'amqplib'
+import amqp from 'amqplib'
 
 import { QueueDataProps, QueueProvider } from '../queue-provider'
 
 export class RabbitMQQueueProvider implements QueueProvider {
-  private channel: ampq.Channel | null
+  private channel: amqp.Channel | null
 
   private static _instance: RabbitMQQueueProvider
 
@@ -21,7 +21,7 @@ export class RabbitMQQueueProvider implements QueueProvider {
 
   private async getChannel() {
     if (!this.channel) {
-      const connection = await ampq.connect(env.RABBITMQ_URL)
+      const connection = await amqp.connect(env.RABBITMQ_URL)
       this.channel = await connection.createChannel()
     }
   }
