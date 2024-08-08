@@ -3,12 +3,6 @@ import { EntrepreneurManagingBusiness } from '@/components/images/entrepreneur-m
 import { ModeToggle } from '@/components/mode-toggle'
 import { Plans } from '@/components/pages/index/plans'
 import { PaymentLink } from '@/components/payment-link'
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu'
 import { Separator } from '@/components/ui/separator'
 import {
   Avatar,
@@ -19,6 +13,10 @@ import {
   CardDescription,
   CardHeader,
   CardTitle,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
 } from '@zapperbot/ui'
 import {
   BadgeInfoIcon,
